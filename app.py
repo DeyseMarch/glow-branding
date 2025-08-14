@@ -1,5 +1,6 @@
-
-import os, tempfile, datetime
+import os
+import tempfile
+import datetime
 from flask import Flask, render_template, request, send_file, redirect, url_for
 from branding.branding_core import generate_kit_zip, KEYWORD_THEMES
 
@@ -32,7 +33,6 @@ def gerar():
     tmp_zip = os.path.join(tempfile.gettempdir(), f"kit_{datetime.datetime.now().timestamp()}.zip")
     zip_path, meta = generate_kit_zip(brief, tmp_zip)
 
-    # Show result view with download link and palette preview
     return render_template("result.html", meta=meta, download_url=url_for('baixar', path=os.path.basename(zip_path)))
 
 @app.route("/download/<path:path>")
@@ -43,5 +43,6 @@ def baixar(path):
     return send_file(full, as_attachment=True, download_name="branding_kit.zip", mimetype="application/zip")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # ⚠️ usar a porta do Render
+    # ⚠️ Usar a porta do Render, não números fixos
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
