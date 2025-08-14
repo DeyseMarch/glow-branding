@@ -43,4 +43,5 @@ def baixar(path):
     return send_file(full, as_attachment=True, download_name="branding_kit.zip", mimetype="application/zip")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    port = int(os.environ.get("PORT", 5000))  # ⚠️ usar a porta do Render
+    app.run(host="0.0.0.0", port=port)
