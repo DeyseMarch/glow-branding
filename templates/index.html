@@ -1,0 +1,71 @@
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glow Studio — Gerador de Kit de Branding</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="header">
+  <div class="brand">Glow Studio</div>
+  <nav>
+    <a href="/">Início</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Branding com IA, feito para vender</h1>
+    <p>Preencha o briefing e receba um kit com <strong>logos</strong>, <strong>paleta de cores</strong> e <strong>guia PDF</strong> em segundos.</p>
+  </section>
+
+  <form class="card" action="/gerar" method="post">
+    <div class="grid">
+      <label>
+        <span>Nome da marca</span>
+        <input type="text" name="brand_name" placeholder='Ex.: "LuxSalon"'>
+      </label>
+      <label>
+        <span>Tagline (opcional)</span>
+        <input type="text" name="tagline" placeholder="Ex.: Beleza com propósito">
+      </label>
+    </div>
+
+    <div class="grid">
+      <label>
+        <span>Nicho</span>
+        <select name="niche">
+          {% for n in niches %}
+          <option value="{{ n }}">{{ n|capitalize }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>
+        <span>Estilo desejado</span>
+        <input type="text" name="style" placeholder="Ex.: minimalista, feminino, premium">
+      </label>
+    </div>
+
+    <div class="grid">
+      <label>
+        <span>Cores preferidas (opcional)</span>
+        <input type="text" name="colors" placeholder="Ex.: dourado, nude, off-white">
+      </label>
+      <label>
+        <span>Público-alvo (opcional)</span>
+        <input type="text" name="audience" placeholder="Ex.: mulheres 25-40, alta renda">
+      </label>
+    </div>
+
+    <button class="btn" type="submit">✨ Gerar meu kit</button>
+    <p class="helper">Ao enviar, o sistema cria automaticamente SVG/PNG e um PDF com a sua paleta.</p>
+  </form>
+</main>
+
+<footer class="footer">
+  <small>© {{ 2025 }} Glow Studio by Deyse March — IA para marcas que brilham ✨</small>
+</footer>
+</body>
+</html>

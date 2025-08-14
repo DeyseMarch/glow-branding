@@ -1,0 +1,40 @@
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seu kit está pronto — Glow Studio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="header">
+  <div class="brand">Glow Studio</div>
+  <nav><a href="/">Novo kit</a></nav>
+</header>
+
+<main class="container">
+  <section class="card">
+    <h2>Kit gerado para {{ meta.name }}</h2>
+    <p>Nicho: <strong>{{ meta.niche }}</strong></p>
+    <p>Tagline: <em>{{ meta.tagline }}</em></p>
+
+    <div class="palette">
+      {% for key, val in meta.palette.items() %}
+        <div class="swatch">
+          <div class="color" style="background: {{ val }}"></div>
+          <div class="label">{{ key }}<br><code>{{ val }}</code></div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <a class="btn" href="{{ download_url }}">⬇️ Baixar Kit (.zip)</a>
+    <p class="helper">O .zip inclui logos (SVG/PNG), paleta (.json) e guia de marca (.pdf).</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <small>© {{ 2025 }} Glow Studio — IA para marcas que brilham ✨</small>
+</footer>
+</body>
+</html>
